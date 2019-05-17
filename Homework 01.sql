@@ -1,16 +1,15 @@
-
 --Creating database 
-CREATE DATABASE Homework01
+Create database SEDCHome
 GO
 
-USE [Homework01]
+USE SEDCHome
 GO
 
 DROP TABLE IF EXISTS [dbo].Teacher;
 DROP TABLE IF EXISTS [dbo].Student;
 DROP TABLE IF EXISTS [dbo].Grade;
 DROP TABLE IF EXISTS [dbo].GradeDetails;
-DROP TABLE IF EXISTS [dbo].AchievmentType;
+DROP TABLE IF EXISTS [dbo].AchievementType;
 DROP TABLE IF EXISTS [dbo].Course;
 GO
 
@@ -59,12 +58,12 @@ create table [dbo].Course(
 
 --Create table for Achievment Type
 
-create table [dbo].AchievmentType(
+create table [dbo].AchievementType(
 	Id smallint IDENTITY(1,1) not null,
 	[Name] nvarchar (50) not null,
 	[Description] nvarchar (100) null,
 	ParticipationRate decimal(5,2) not null,
-	CONSTRAINT [PK_AchievmentType] PRIMARY KEY CLUSTERED(
+	CONSTRAINT [PK_AchievementType] PRIMARY KEY CLUSTERED(
 	[Id] ASC
 	))
 	GO
@@ -72,7 +71,7 @@ create table [dbo].AchievmentType(
 -- Create table for Grade
 
 create table [dbo].Grade(
-	Id smallint IDENTITY(1,1) not null,
+	Id int IDENTITY(1,1) not null,
 	StudentID smallint not null,
 	CourseID smallint not null,
 	TeacherID smallint not null,
@@ -87,12 +86,12 @@ create table [dbo].Grade(
 	--Create table for Grade Details
 
 create table [dbo].GradeDetails(
-	Id smallint IDENTITY(1,1) not null,
-	GradeID smallint not null,
-	AchievmentTypeID smallint not null,
-	AchievmentPoints decimal (5,2) not null,
-	AchievmentMaxPoints decimal (5,2) not null,
-	AchievmentDate date not null,
+	Id int IDENTITY(1,1) not null,
+	GradeID int not null,
+	AchievementTypeID int not null,
+	AchievementPoints int not null,
+	AchievementMaxPoints int not null,
+	AchievementDate date not null,
 	CONSTRAINT [PK_GradeDetails] PRIMARY KEY CLUSTERED(
 	[Id] ASC
 	))
