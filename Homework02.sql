@@ -94,6 +94,8 @@ GO
 
 ALTER TABLE [dbo].[GradeDetails] DROP CONSTRAINT [FK_GradeDetails];
 ALTER TABLE [dbo].[Grade] DROP CONSTRAINT [FK_Grade];
+ALTER TABLE [dbo].[Grade] DROP CONSTRAINT [FK_TeacherID];
+ALTER TABLE [dbo].[Grade] DROP CONSTRAINT [FK_StudentID];
 
 --Creating constraints 	
 
@@ -105,11 +107,23 @@ go
 
 ALTER TABLE dbo.Grade
 ADD CONSTRAINT FK_Grade
-FOREIGN KEY (CourseID) 
+FOREIGN KEY (CourseID)
 REFERENCES dbo.Course(Id)
 go
 
---TO DO more foreign keys...................
+ALTER TABLE dbo.Grade
+ADD CONSTRAINT FK_TeacherID
+FOREIGN KEY (TeacherID)
+REFERENCES dbo.Teacher(ID)
+go
+
+ALTER TABLE dbo.Grade
+ADD CONSTRAINT FK_StudentID
+FOREIGN KEY (StudentID)
+REFERENCES dbo.Student(ID)
+go
+
+
 
 
 --List all possible combinations of Courses names and AchievementType names that can be passed by student
@@ -137,8 +151,8 @@ where g.TeacherID is null
 go
 
 
-select s.FirstName,s.LastName
+select *
 from dbo.Grade g
-right join dbo.Student s on g.StudentID = s.Id
+right join dbo.Student s on s.Id = g.StudentID 
 where g.Grade is null
 go
