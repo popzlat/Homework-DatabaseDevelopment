@@ -2,12 +2,12 @@ USE SEDCHome
 GO
 
 --Declare scalar variable for storing FirstName values
---Assign value ëAntonioí to the FirstName variable
+--Assign value ‚ÄòAntonio‚Äô to the FirstName variable
 --Find all Students having FirstName same as the variable
 --Declare table variable that will contain StudentId, StudentName and DateOfBirth
 --Fill the table variable with all Female students
 --Declare temp table that will contain LastName and EnrolledDate columns
---Fill the temp table with all Male students having First Name starting with ëAí
+--Fill the temp table with all Male students having First Name starting with ‚ÄòA‚Äô
 --Retrieve the students from the table which last name is with 7 characters
 --Find all teachers whose FirstName length is less than 5 and
 --the first 3 characters of their FirstName and LastName are the same
@@ -52,10 +52,10 @@ LEFT(t.FirstName,3) = RIGHT(t.FirstName,3)
 ---------------------------------------------------
 
 --Declare scalar function (fn_FormatStudentName) for retrieving the Student description for specific StudentId in the following format:
---StudentCardNumber without ìsc-î
---ì ñ ì
+--StudentCardNumber without ‚Äúsc-‚Äù
+--‚Äú ‚Äì ‚Äú
 --First character of student FirstName
---ì.î
+--‚Äú.‚Äù
 --Student LastName
 
 CREATE FUNCTION dbo.fn_FormatStudentName (@StudentId int)
@@ -71,8 +71,8 @@ END
 select *,dbo.fn_FormatStudentName (id) as FunctionResult
 from dbo.Student
 --------------------------------------------------------
-Create multi-statement table value function that for specific Teacher and Course will return list of students (FirstName, LastName)
-who passed the exam, together with Grade and CreatedDate
+--Create multi-statement table value function that for specific Teacher and Course will return list of students (FirstName, LastName)
+--who passed the exam, together with Grade and CreatedDate
 
 CREATE FUNCTION dbo.fn_ListOfStudentsWhoPassedTheExam (@TeacherId int,@CourseId int)
 RETURNS @Result TABLE (StudentFirstName nvarchar(100),StudentLastName nvarchar(100), Grade int , CreatedDate datetime)
